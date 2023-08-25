@@ -1,0 +1,51 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local2="clr-namespace:SortOfScoreboard;assembly=SortOfScoreboard"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   
+    xmlns:local="clr-namespace:SetOfBarsLib"
+    
+    mc:Ignorable="d"
+    x:Class="SetOfBarsLib.Bar"
+    Height="59" Width="113"
+    Focusable="True"
+    MouseDown="OnMouseDown"
+   
+    LostFocus="OnLostFocus"
+    >
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="Blue" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+    <Border Background="LightGray" Height="59" Width="110">
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Delete" Click="OnDeleteClick"/>
+            </ContextMenu>
+        </Border.ContextMenu>
+        <Grid  Width="121">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="textBlocktextBox" HorizontalAlignment="Left" Margin="5,5,0,0" TextWrapping="Wrap" Text="{Binding ElementName=textBox, Path=Text}" VerticalAlignment="Top" Height="19" Width="100"/>
+            <TextBlock x:Name="textBlocksortOfScoreboard" HorizontalAlignment="Left" Margin="5,34,0,0" TextWrapping="Wrap" Text="{Binding ElementName=sortOfScoreboard, Path=Value}" VerticalAlignment="Top" Height="20" Width="49"/>
+            <TextBox x:Name="textBox" Text="Name" Grid.Row="0" Margin="5,5,35,46.667" Visibility="Hidden"/>
+            <local2:SortOfScoreboard x:Name="sortOfScoreboard"  Grid.Row="0" Grid.Column="0" Margin="5,34,29,16" Height="Auto" Width="Auto" Visibility="Hidden"/>
+        </Grid>
+    </Border>
+</UserControl>

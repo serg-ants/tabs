@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="SetOfBarsLib.SetOfBars"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SetOfBarsLib"
+             mc:Ignorable="d" Height="340.15" Width="624.625">
+    <Grid MouseDown="Upd" MouseUp="Upd" MouseMove="Upd">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Section -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Number of Bars:" Margin="5,0,5,0"/>
+            <TextBox x:Name="tbNumberOfBars" Text="4" Width="30" Margin="5,0,5,0"/>
+            <Button x:Name="btnGenerateBars" Content="Generate" Margin="5,0,5,0" Click="AddBar_Click"/>
+        </StackPanel>
+
+        <!-- Bars Area -->
+        <ScrollViewer Focusable="False"  Grid.Row="1" Name="AreaScrollViewer"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <Border BorderBrush="Gray" BorderThickness="1" Background="Silver">
+                <WrapPanel x:Name="BarsPanel">
+
+                </WrapPanel>
+            </Border>
+        </ScrollViewer>
+
+        <!-- Footer Section -->
+        <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="1" Padding="5">
+            <TextBlock x:Name="tbTotalCount" Text="Total count: 0"/>
+        </Border>
+    </Grid>
+</UserControl>

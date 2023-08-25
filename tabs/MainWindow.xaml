@@ -4,16 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tabs"
+          xmlns:cc2="clr-namespace:SortOfScoreboard;assembly=SortOfScoreboard"
+       xmlns:vm="clr-namespace:SetOfBarsLib;assembly=SetOfBarsLib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl>
             <TabItem Header="2nd - Button">
-                
+                <Button   Style="{StaticResource MyCustomButton}" Content="CLICK" Click="Button_Click"/>
+
             </TabItem>
-            <TabItem Header="3rd - Custom Control" />
-            <TabItem Header="4th - Bar" />
-            <TabItem Header="5th - Collection of Bars" />
+            <TabItem Header="3rd - Custom Control">
+                <Grid>
+                    <cc2:SortOfScoreboard x:Name="ss" ></cc2:SortOfScoreboard>
+                </Grid>
+            </TabItem>
+            <TabItem Header="4.1 - Bar" >
+                <StackPanel>
+                    <vm:Bar Name="a"></vm:Bar>
+                    <vm:Bar Name="b"></vm:Bar>
+                    <vm:Bar Name="c"></vm:Bar>
+                </StackPanel>
+               
+            </TabItem>
+            <TabItem Header="4.2 - Collection of Bars" >
+                <vm:SetOfBars></vm:SetOfBars>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

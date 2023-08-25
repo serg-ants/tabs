@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tabs", "tabs\tabs.csproj", "{E4993B1E-8BDA-43BB-A331-6484A8129FD2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task2", "Task2\Task2.csproj", "{B0820635-7922-4FCC-9CD7-D5474DCEF3E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 3. SortOfScoreboard", "SortOfScoreboard\Task 3. SortOfScoreboard.csproj", "{736A2B87-F4BF-47E9-A36F-DDE03BF27739}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortOfScoreboard", "..\..\MyCustomControl\Scoreboard\SortOfScoreboard\SortOfScoreboard.csproj", "{736A2B87-F4BF-47E9-A36F-DDE03BF27739}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 2. CustomButton", "CustomButtonLib\Task 2. CustomButton.csproj", "{704E75D0-9E02-48F0-A9F1-69A60F0B4718}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 4. SetOfBarsLib", "SetOfBarsLib\Task 4. SetOfBarsLib.csproj", "{8E2E3063-92E7-4812-A01E-EA9C85521D42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{E4993B1E-8BDA-43BB-A331-6484A8129FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4993B1E-8BDA-43BB-A331-6484A8129FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4993B1E-8BDA-43BB-A331-6484A8129FD2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0820635-7922-4FCC-9CD7-D5474DCEF3E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0820635-7922-4FCC-9CD7-D5474DCEF3E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0820635-7922-4FCC-9CD7-D5474DCEF3E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0820635-7922-4FCC-9CD7-D5474DCEF3E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{736A2B87-F4BF-47E9-A36F-DDE03BF27739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{736A2B87-F4BF-47E9-A36F-DDE03BF27739}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{736A2B87-F4BF-47E9-A36F-DDE03BF27739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{736A2B87-F4BF-47E9-A36F-DDE03BF27739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{704E75D0-9E02-48F0-A9F1-69A60F0B4718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704E75D0-9E02-48F0-A9F1-69A60F0B4718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704E75D0-9E02-48F0-A9F1-69A60F0B4718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704E75D0-9E02-48F0-A9F1-69A60F0B4718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E2E3063-92E7-4812-A01E-EA9C85521D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E2E3063-92E7-4812-A01E-EA9C85521D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E2E3063-92E7-4812-A01E-EA9C85521D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E2E3063-92E7-4812-A01E-EA9C85521D42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

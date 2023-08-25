@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:tabs"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/WpfControlLibrary1;component/Dictionary1.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!-- Other application resources -->
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
