@@ -1,0 +1,204 @@
+﻿<Window
+    x:Class="WpfApp1.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfApp1"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="654.091"
+    Height="720.545"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <local:DivideConverter x:Key = "DivideConverter"/>
+        <local:MultiplyConverter x:Key = "MultiplyConverter"/>
+
+       
+    </Window.Resources>
+
+
+
+    <Grid>
+    <!--<Grid PreviewMouseDown="Grid_PreviewMouseDown">-->
+
+
+
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="625*" />
+            <ColumnDefinition Width="21*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox
+            x:Name="File_contents"
+            Width="400"
+            Height="566"
+            Margin="203,84,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            FontSize="{Binding ElementName=sizeComboBox, Path=SelectedItem}"
+            RenderTransformOrigin="0.19,0.474"
+            ScrollViewer.CanContentScroll="True"
+            TextChanged="TextBox_TextChanged"
+            TextWrapping="Wrap"
+            VerticalScrollBarVisibility="Auto" />
+
+        <Button
+            Width="75"
+            Margin="528,27,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="OpenButton_Click"
+            Content="Open" />
+        <TextBox
+            x:Name="Input_Dir"
+            Width="367"
+            Height="23"
+            Margin="140,27,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Foreground="Black"
+            GotFocus="Input_Dir_GotFocus"
+            LostFocus="Input_Dir_LostFocus"
+            Text="Full directory pathway to a file"
+            TextChanged="TextBox_TextChanged_1"
+            TextWrapping="Wrap" />
+        <Button
+            Width="75"
+            Margin="44,27,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="BrowseButton_Click"
+            Content="Browse" />
+        <TextBlock
+            Margin="44,89,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Font family"
+            TextWrapping="Wrap" />
+        <TextBlock
+            Margin="44,165,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            RenderTransformOrigin="0.68,-0.938"
+            Text="Style"
+            TextWrapping="Wrap" />
+        <TextBlock
+            Margin="44,245,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Size"
+            TextWrapping="Wrap" />
+        <ComboBox
+            x:Name="sizeComboBox"
+            Width="120"
+            Margin="45,266,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            local:ComboBoxBehavior.SingleClickSelection="True"
+            IsEditable="True"
+            ItemsSource="{Binding fontSizes}"
+            SelectedIndex=" 0"
+            SelectionChanged="FontSizeComboBox_SelectionChanged" />
+
+        <ComboBox
+            x:Name="Font_Family_ComboBox"
+            Width="120"
+            Margin="44,110,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            local:ComboBoxBehavior.SingleClickSelection="True"
+            DisplayMemberPath="Source"
+            IsEditable="True"
+            ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
+            SelectedItem="{Binding ElementName=File_contents, Path=FontFamily}"
+            SelectionChanged="ComboBox_SelectionChanged_1" />
+        <Button
+            x:Name="Save"
+            Width="120"
+            Height="26"
+            Margin="44,453,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="SaveButton_Click"
+            Content="Save changes" />
+
+
+
+        <TextBlock
+            x:Name="curr_file"
+            Width="268"
+            Height="16"
+            Margin="215,56,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TextWrapping="Wrap" />
+        <TextBlock
+            Height="24"
+            Margin="44,313,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text="Color"
+            TextWrapping="Wrap" />
+
+
+        <ListBox
+            x:Name="ColorListBox"
+            Width="120"
+            Height="84"
+            Margin="44,337,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectedIndex="7"
+            SelectionChanged="ComboBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Foreground="{Binding}" Text="{Binding}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock
+            x:Name="CRFLtext"
+            Width="85"
+            Margin="140,56,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            TextWrapping="Wrap" />
+        <CheckBox
+            x:Name="italicCheckBox"
+            Width="116"
+            Margin="48,186,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Checked="CheckBox_Checked"
+            Content="italic"
+            Unchecked="CheckBox_Unchecked" />
+        <CheckBox
+            x:Name="boldCheckBox"
+            Width="116"
+            Margin="48,201,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Checked="CheckBox_Checked"
+            Content="bold"
+            Unchecked="CheckBox_Unchecked" />
+        <CheckBox
+            x:Name="underlinedCheckBox"
+            Width="116"
+            Margin="48,216,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Checked="CheckBox_Checked"
+            Content="underline"
+            Unchecked="CheckBox_Unchecked" />
+
+
+     
+
+
+    </Grid>
+
+
+
+</Window>
