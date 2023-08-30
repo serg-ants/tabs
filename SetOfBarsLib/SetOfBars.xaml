@@ -4,7 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SetOfBarsLib"
-             mc:Ignorable="d" Height="340.15" Width="624.625">
+             mc:Ignorable="d"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             >
     <Grid MouseDown="Upd" MouseUp="Upd" MouseMove="Upd">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

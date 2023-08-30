@@ -28,10 +28,20 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        string Default_Window_Name;
+        bool GSP_Success;
+        bool File_contents_IsEmpty;
+        bool File_Name_IsDefault;
 
         public MainWindow()
         {
             InitializeComponent();
+
+
+            Default_Window_Name = File_Title.Text;
+            File_contents_IsEmpty = string.IsNullOrWhiteSpace(File_contents.Text.Trim());
+            File_Name_IsDefault =  (File_Title.Text == Default_Window_Name) ? true : false;
+            GSP_Success = false;
         }
 
 
@@ -60,33 +70,26 @@ namespace WpfApp1
             }
         }
 
-        //private void EditingWindow_Closing(object sender, CancelEventArgs e)
-        //{
-        //    e.Cancel = true;
-        //    _editingWindow.Visibility = Visibility.Hidden;
-        //}
-
-
         private void File_New_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Do you want to save your changes?", "Save Changes", MessageBoxButton.YesNoCancel);
-            switch (result)
+            switch (OnSaving())
             {
                 case MessageBoxResult.Yes:
                     // Saving procedure
-                    bool yn = false;
-                    Generalized_Saving_procedure(sender, e, ref yn);
-                    if (yn)
+                    bool GSP_Success = false;
+                    Generalized_Saving_procedure(sender, e, ref GSP_Success);
+                    if (GSP_Success)
                     {
                         File_contents.Clear();
-                        this.Title = "New document";
+                        File_Title.Text = "New document";
                     }
                   
                     break;
+
                 case MessageBoxResult.No:
 
                     File_contents.Clear();
-                    this.Title = "New document";
+                    File_Title.Text = "New document";
                     break;
                 case MessageBoxResult.Cancel:
                     //args_.Handled = true;
@@ -98,14 +101,13 @@ namespace WpfApp1
 
         private void File_Open_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Do you want to save your changes?", "Save Changes", MessageBoxButton.YesNoCancel);
-            switch (result)
+            switch (OnSaving())
             {
                 case MessageBoxResult.Yes:
                     // Saving procedure
-                    bool yn=false;
-                    Generalized_Saving_procedure(sender, e, ref yn);
-                    if(yn)
+                    GSP_Success = false;
+                    Generalized_Saving_procedure(sender, e, ref GSP_Success);
+                    if(GSP_Success)
                     { Browsing_procedure(sender, e); }
                    
                     break;
@@ -121,9 +123,9 @@ namespace WpfApp1
 
         private void Generalized_Saving_procedure(object sender, RoutedEventArgs e)
         {
-            string fileName = this.Title;
+            string fileName = File_Title.Text;
 
-            if (!(fileName == "New document" && File_contents.Text == ""))
+            if (!(File_contents_IsEmpty && File_Name_IsDefault))
             {
                 if (fileName == "New document")
                 {
@@ -132,13 +134,13 @@ namespace WpfApp1
                 else
                 {
                     string temp_File_Path;
-                    temp_File_Path = this.Title;
+                    temp_File_Path = File_Title.Text;
                     if (temp_File_Path != "")
                     {
                         //var result = MessageBox.Show("Do you want to save changes?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         //if (result == MessageBoxResult.Yes)
                         //{
-                        File.WriteAllText(this.Title, File_contents.Text);
+                        File.WriteAllText(File_Title.Text, File_contents.Text);
                         //}
                     }
                 }
@@ -164,7 +166,7 @@ namespace WpfApp1
                 {
                     writer.Write(File_contents.Text);
                 }
-                this.Title= saveFileDialog.FileName;
+                File_Title.Text = saveFileDialog.FileName;
             }
             else if (result == false)
             {
@@ -192,7 +194,7 @@ namespace WpfApp1
             openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() == true)
             {
-                this.Title = openFileDialog.FileName;
+                File_Title.Text = openFileDialog.FileName;
             }
             //ColorListBox.SelectedItem = new SolidColorBrush(Colors.Black);
             OpenButton_Click(sender, e);
@@ -206,20 +208,20 @@ namespace WpfApp1
             base.OnClosing(e);
             if (true)
             {
-                var result = MessageBox.Show("Do you want to save your changes?", "Save Changes", MessageBoxButton.YesNoCancel);
-                switch (result)
+               
+                switch (OnSaving())
                 {
                     case MessageBoxResult.Yes:
                         // Saving procedure
 
-                        bool yn = false;
+                        bool GSP_Success = false;
                         RoutedEventArgs args_ = new RoutedEventArgs();
                         object obj_ = new object();
-                        Generalized_Saving_procedure(obj_, args_, ref yn);
+                        Generalized_Saving_procedure(obj_, args_, ref GSP_Success);
 
 
 
-                        if (!yn)
+                        if (!GSP_Success)
                         { e.Cancel = true; }
                         else
                         {
@@ -244,7 +246,7 @@ namespace WpfApp1
 
             try
             {
-                string stringPath = this.Title;
+                string stringPath = File_Title.Text;
 
                 // Validity-of-the-pathway check
                 if (!File.Exists(stringPath))
@@ -268,7 +270,7 @@ namespace WpfApp1
                 // Upload file's contents into a TextBax after reading it
                 string content = File.ReadAllText(stringPath);
                 File_contents.Text = content;
-                this.Title = stringPath;
+                File_Title.Text = stringPath;
                 
             }
             catch (FileNotFoundException ex)
@@ -294,7 +296,7 @@ namespace WpfApp1
         {
             Success = false;
 
-            string fileName = this.Title;
+            string fileName = File_Title.Text;
             string contts = File_contents.Text;
 
             if (!(fileName == "New document" && contts == ""))
@@ -306,13 +308,13 @@ namespace WpfApp1
                 else
                 {
                     string temp_File_Path;
-                    temp_File_Path = this.Title;
+                    temp_File_Path = File_Title.Text;
                     if (temp_File_Path != "")
                     {
                         //var result = MessageBox.Show("Do you want to save changes?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         //if (result == MessageBoxResult.Yes)
                         //{
-                        File.WriteAllText(this.Title, File_contents.Text);
+                        File.WriteAllText(File_Title.Text, File_contents.Text);
                         //}
 
                         Success = true;
@@ -335,7 +337,7 @@ namespace WpfApp1
                 {
                     writer.Write(File_contents.Text);
                 }
-                this.Title = saveFileDialog.FileName;
+                File_Title.Text = saveFileDialog.FileName;
             }
             else if (result == false)
             {
@@ -365,9 +367,29 @@ namespace WpfApp1
             Application.Current.Shutdown();
         }
 
+        private void File_contents_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            File_contents_IsEmpty = string.IsNullOrWhiteSpace(File_contents.Text.Trim());
+        }
 
-       
+        private void File_Title_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            File_Name_IsDefault=(File_Title.Text == Default_Window_Name) ? true : false;
+        }
 
+        private MessageBoxResult OnSaving()
+        {
+            MessageBoxResult result;
+            if (!File_contents_IsEmpty || !File_Name_IsDefault)
+            {
+                result = MessageBox.Show("Do you want to save your changes?", "Save Changes", MessageBoxButton.YesNoCancel);
+            }
+            else
+            {
+                result = MessageBoxResult.No;
+            }
+            return result;
+        }
     }
 
 

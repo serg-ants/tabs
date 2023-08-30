@@ -47,6 +47,8 @@ namespace WpfApp1
             }
 
             fontSizes = new List<int> { 8, 9, 10, 12, 14, 16, 18, 20, 24, 26, 28, 30 };
+
+            Font_Family_ComboBox.SelectedItem = Fonts.SystemFontFamilies.FirstOrDefault(f => f.Source == "Segoe UI");
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -206,55 +208,7 @@ namespace WpfApp1
             ColorListBox.SelectedItem = new SolidColorBrush(Colors.Black);
         }
 
-        private void OpenButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            try
-            {
-                string stringPath = mainWindow.Title;
-
-                // Validity-of-the-pathway check
-                if (!File.Exists(stringPath))
-                {
-                    throw new FileNotFoundException("File not found", stringPath);
-                }
-
-                // Check if the File's extension matches with demanded .txt
-                if (System.IO.Path.GetExtension(stringPath) != ".txt")
-                {
-                    throw new FileFormatException("Wrong format. Only .txt files are supported.");
-                }
-
-                // Check directory name for validity
-                string directoryName = System.IO.Path.GetDirectoryName(stringPath);
-                if (!Directory.Exists(directoryName))
-                {
-                    throw new DirectoryNotFoundException("No such directory");
-                }
-
-                // Upload file's contents into a TextBax after reading it
-                string content = File.ReadAllText(stringPath);
-                mainWindow.File_contents.Text = content;
-                mainWindow.Title = stringPath;
-                
-            }
-            catch (FileNotFoundException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (FileFormatException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+       
 
         private
          static string Input_Dir_Default_txt;

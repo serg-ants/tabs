@@ -28,7 +28,7 @@
                
             </TabItem>
             <TabItem Header="4.2 - Collection of Bars" >
-                <vm:SetOfBars></vm:SetOfBars>
+                <vm:SetOfBars  ></vm:SetOfBars>
             </TabItem>
         </TabControl>
     </Grid>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Text editing parameters" Height="354" Width="428">
+        Title="Text editing parameters" Height="354" Width="428"
+        ResizeMode="NoResize">
     <WrapPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical" Height="130" Width="127">

@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WpfApp1"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="New document"
+    Title="{Binding ElementName=File_Title, Path=Text}"
+  
     Width="554.091"
     Height="320.545"
    
@@ -36,6 +37,7 @@
                     <MenuItem Header="About"/>
                 </MenuItem>
             </Menu>
+            <TextBox x:Name="File_Title" Text="New Document" Visibility="Hidden" TextChanged="File_Title_TextChanged"/>
         </StackPanel>
         <!--<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Button>
@@ -63,7 +65,9 @@
             ScrollViewer.CanContentScroll="True"
             
             TextWrapping="Wrap"
-            VerticalScrollBarVisibility="Auto" />
+            VerticalScrollBarVisibility="Auto"
+            TextChanged="File_contents_TextChanged"
+            />
        
        
        
