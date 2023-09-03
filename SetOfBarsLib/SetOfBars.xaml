@@ -7,8 +7,9 @@
              mc:Ignorable="d"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
+             
              >
-    <Grid MouseDown="Upd" MouseUp="Upd" MouseMove="Upd">
+    <Grid MouseDown="Upd" MouseUp="Upd" MouseMove="Upd" MouseLeftButtonDown="Foci_Adjustments">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -18,14 +19,14 @@
         <!-- Header Section -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Number of Bars:" Margin="5,0,5,0"/>
-            <TextBox x:Name="tbNumberOfBars" Text="4" Width="30" Margin="5,0,5,0"/>
+            <TextBox x:Name="tbNumberOfBars" PreviewTextInput="TbNumberOfBars_PreviewTextInput" Text="4" Width="30" Margin="5,0,5,0"/>
             <Button x:Name="btnGenerateBars" Content="Generate" Margin="5,0,5,0" Click="AddBar_Click"/>
         </StackPanel>
 
         <!-- Bars Area -->
         <ScrollViewer Focusable="False"  Grid.Row="1" Name="AreaScrollViewer"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <Border BorderBrush="Gray" BorderThickness="1" Background="Silver">
-                <WrapPanel x:Name="BarsPanel">
+            <Border  x:Name="The_Border"  Focusable="True"  BorderBrush="Gray" BorderThickness="1" Background="Silver" >
+                <WrapPanel x:Name="BarsPanel" >
 
                 </WrapPanel>
             </Border>

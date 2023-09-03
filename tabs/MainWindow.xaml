@@ -7,7 +7,9 @@
           xmlns:cc2="clr-namespace:SortOfScoreboard;assembly=SortOfScoreboard"
        xmlns:vm="clr-namespace:SetOfBarsLib;assembly=SetOfBarsLib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+       
+        >
     <Grid>
         <TabControl>
             <TabItem Header="2nd - Button">

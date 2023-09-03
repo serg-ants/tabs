@@ -29,7 +29,8 @@ namespace SetOfBarsLib
 {
     public partial class SetOfBars : UserControl
     {
-        private const int BarsPerRow = 4;
+        public Bar Last_Focused_Bar = null;
+
         public int totalNumBars;
         public int totalCount = 0;
 
@@ -250,5 +251,31 @@ namespace SetOfBarsLib
             }
         }
 
+        private void Foci_Adjustments(object sender, MouseButtonEventArgs e)
+        {
+            //MessageBox.Show("Foci Adjustments!", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            // Get the element that the mouse is over
+            DependencyObject element = (DependencyObject)Mouse.DirectlyOver;
+
+            // Traverse the visual tree to check if the element is a Bar
+            while (element != null && !(element is Bar))
+            {
+                element = VisualTreeHelper.GetParent(element);
+            }
+
+            if (!(element is Bar))
+            {
+                The_Border.Focus();
+            }
+        }
+
+        private void TbNumberOfBars_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text[0]))
+            {
+                e.Handled = true; // Ignore the input
+            }
+        }
     }
 }

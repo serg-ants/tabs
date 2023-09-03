@@ -11,7 +11,9 @@
     x:Class="SetOfBarsLib.Bar"
     Height="59" Width="113"
     Focusable="True"
-    MouseDown="OnMouseDown"
+    MouseLeftButtonDown="OnMouseDown"
+    
+    
    
     LostFocus="OnLostFocus"
     >
