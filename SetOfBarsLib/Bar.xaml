@@ -46,7 +46,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock x:Name="textBlocktextBox" HorizontalAlignment="Left" Margin="5,5,0,0" TextWrapping="Wrap" Text="{Binding ElementName=textBox, Path=Text}" VerticalAlignment="Top" Height="19" Width="100"/>
             <TextBlock x:Name="textBlocksortOfScoreboard" HorizontalAlignment="Left" Margin="5,34,0,0" TextWrapping="Wrap" Text="{Binding ElementName=sortOfScoreboard, Path=Value}" VerticalAlignment="Top" Height="20" Width="49"/>
-            <TextBox x:Name="textBox" Text="Name" Grid.Row="0" Margin="5,5,35,46.667" Visibility="Hidden"/>
+            <TextBox x:Name="textBox" GotFocus="ValidNameSave" Text="Name" Grid.Row="0" Margin="5,5,35,46.667" Visibility="Hidden"/>
             <local2:SortOfScoreboard x:Name="sortOfScoreboard"  Grid.Row="0" Grid.Column="0" Margin="5,34,29,16" Height="Auto" Width="Auto" Visibility="Hidden"/>
         </Grid>
     </Border>

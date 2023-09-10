@@ -42,18 +42,7 @@ namespace SetOfBarsLib
 
         MyObject ayayaya = new MyObject();
 
-        public ObservableCollection<MyObject> MyObjects
-        {
-            get; set;
-
-
-        }
-
-
-
-
-
-
+        public ObservableCollection<MyObject> MyObjects { get; set; }
 
         public string hexstr()
         {
@@ -117,8 +106,6 @@ namespace SetOfBarsLib
             //temp.OnLostFocus(sender,e);
             //temp = bar;
         }
-
-
 
         private void DeleteBar(object sender, RoutedEventArgs e)
         {
@@ -188,7 +175,7 @@ namespace SetOfBarsLib
         private void Upd(object sender, MouseButtonEventArgs e)
         {
             totalCountUpd();
-            namesColoring();
+            NamesUniqueness();
         }
 
         private void Upd(object sender, MouseEventArgs e)
@@ -211,14 +198,14 @@ namespace SetOfBarsLib
                     if (child is Bar bar)
                     {
                         totalCount += bar.sortOfScoreboard.Value;
-                        bar.textBlocktextBox.Foreground = Brushes.Red;
+                        //bar.textBlocktextBox.Foreground = Brushes.Red;
                     }
                 }
                 tbTotalCount.Text = "Total count: " + (totalCount);
             }
         }
 
-        public void namesColoring()
+        public void NamesUniqueness()
         {
             if (gridAsWP == null)
             {
@@ -229,25 +216,36 @@ namespace SetOfBarsLib
                 // get all the Bar elements in the WrapPanel
                 var bars = gridAsWP.Children.OfType<Bar>();
 
-                // create a dictionary to keep track of which texts have already been seen
-                var seenTexts = new Dictionary<string, bool>();
+                /// <summary>
+                /// Create a dictionary to keep track of which texts have already been seen
+                /// </summary>
+                var seenTextsUnique = new Dictionary<string, bool>();
 
-                // iterate through each Bar
+                // iterate through each Bar and complete a dictionary
                 foreach (var bar in bars)
                 {
                     // check if we've already seen this text before
-                    if (seenTexts.ContainsKey(bar.Text))
+                    if (seenTextsUnique.ContainsKey(bar.Text))
                     {
-                        // if so, set the text color to red
-                        bar.textBlocktextBox.Foreground = Brushes.Red;
+                        // if so, set uniqueness to false
+                        seenTextsUnique[bar.Text] = false;
                     }
                     else
                     {
-                        // otherwise, mark this text as seen
-                        seenTexts[bar.Text] = true;
-                        bar.textBlocktextBox.Foreground = Brushes.Black;
+                        // otherwise, mark text as unique
+                        seenTextsUnique[bar.Text] = true;
                     }
                 }
+
+                // Restoration of valid names
+                foreach (var bar in bars)
+                {
+                    if(seenTextsUnique[bar.Text] == false && bar.textBox.IsVisible)
+                    {
+                        bar.RestoreValidName();
+                    }
+                }
+
             }
         }
 

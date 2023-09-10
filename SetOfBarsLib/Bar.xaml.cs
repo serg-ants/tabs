@@ -25,7 +25,10 @@ namespace SetOfBarsLib
 {
     public partial class Bar : UserControl
     {
-
+        /// <summary>
+        /// Last valid name
+        /// </summary>
+        public string previousValidName = "";
 
         public Bar()
         {
@@ -41,17 +44,17 @@ namespace SetOfBarsLib
         public event EventHandler DeleteRequested;
 
         ////////////
-        public static readonly DependencyProperty NameProperty =
-        DependencyProperty.Register("Name", typeof(string), typeof(Bar));
+        //public static readonly DependencyProperty NameProperty =
+        //DependencyProperty.Register("Name", typeof(string), typeof(Bar));
 
         public static readonly DependencyProperty ItemsCountProperty =
             DependencyProperty.Register("ItemsCount", typeof(int), typeof(Bar));
 
-        public string Name
-        {
-            get { return (string)GetValue(NameProperty); }
-            set { SetValue(NameProperty, value); }
-        }
+        //public string Name
+        //{
+        //    get { return (string)GetValue(NameProperty); }
+        //    set { SetValue(NameProperty, value); }
+        //}
 
         public int ItemsCount
         {
@@ -136,6 +139,25 @@ namespace SetOfBarsLib
             //parentSetOfBars.Rearrange();
             parentSetOfBars.totalNumBars--;
         }
+
+        private void ValidNameSave(object sender, RoutedEventArgs e)
+        {
+            previousValidName = textBlocktextBox.Text;
+        }
+
+        public void RestoreValidName()
+        {
+            textBlocktextBox.Text = previousValidName;
+        }
+
+        //private void TextBlocktextBox_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    if (textBlocktextBox.Foreground == Brushes.Red)
+        //        textBlocktextBox.Text = previousValidName;
+        //}
+
+
+
 
         //private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         //{

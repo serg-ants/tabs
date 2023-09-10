@@ -7,7 +7,6 @@
              mc:Ignorable="d"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
-             
              >
     <Grid MouseDown="Upd" MouseUp="Upd" MouseMove="Upd" MouseLeftButtonDown="Foci_Adjustments">
         <Grid.RowDefinitions>
