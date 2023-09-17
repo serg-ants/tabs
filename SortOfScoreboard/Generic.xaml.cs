@@ -47,17 +47,36 @@ namespace SortOfScoreboard
             }
         }
 
+        //public int MaxValue
+        //{
+        //    get { return _maxValue; }
+        //    set { _maxValue = value; }
+        //}
+
+        //public int MinValue
+        //{
+        //    get { return _minValue; }
+        //    set { _minValue = value; }
+        //}
+
+        public static readonly DependencyProperty MaxValueProperty =
+            DependencyProperty.Register("MaxValue", typeof(int), typeof(SortOfScoreboard), new PropertyMetadata(50000));
+
+        public static readonly DependencyProperty MinValueProperty =
+            DependencyProperty.Register("MinValue", typeof(int), typeof(SortOfScoreboard), new PropertyMetadata(-50000));
+
         public int MaxValue
         {
-            get { return _maxValue; }
-            set { _maxValue = value; }
+            get { return (int)GetValue(MaxValueProperty); }
+            set { SetValue(MaxValueProperty, value); }
         }
 
         public int MinValue
         {
-            get { return _minValue; }
-            set { _minValue = value; }
+            get { return (int)GetValue(MinValueProperty); }
+            set { SetValue(MinValueProperty, value); }
         }
+
 
 
         static SortOfScoreboard()
